@@ -1,7 +1,7 @@
 name: 'Terraform Apply'
 
 on:
-  merge: 
+  push:
     branches: ["main"]
 
 permissions:
@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   terraform:
-    name: 'Terraform Plan'
+    name: 'Terraform Apply'
     runs-on: ubuntu-latest
     environment: production
 
