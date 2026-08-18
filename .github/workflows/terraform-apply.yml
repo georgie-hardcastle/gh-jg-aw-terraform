@@ -1,0 +1,5 @@
+name: 'Terraform Apply'
+
+on:
+  merge: 
+    branches: ["main"]
