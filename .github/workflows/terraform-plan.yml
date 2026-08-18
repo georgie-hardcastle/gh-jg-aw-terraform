@@ -1,4 +1,4 @@
-name: 'Terraform'
+name: 'Terraform Plan'
 
 on:
   pull_request: 
@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   terraform:
-    name: 'Terraform'
+    name: 'Terraform Plan'
     runs-on: ubuntu-latest
     environment: production
 
