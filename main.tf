@@ -131,7 +131,7 @@ resource "aws_elastic_beanstalk_environment" "task_listing_eba_environment" {
 resource "aws_db_instance" "rds_app" {
   allocated_storage   = 10
   engine              = "postgres"
-  engine_version      = "15.3"
+  engine_version      = "15.13"
   instance_class      = "db.t3.micro"
   identifier          = "gh-jg-aw-example-app-prod"
   db_name             = "gh-jg-aw-example-app-database-name"
