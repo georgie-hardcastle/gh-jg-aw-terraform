@@ -134,7 +134,7 @@ resource "aws_db_instance" "rds_app" {
   engine_version      = "15.13"
   instance_class      = "db.t3.micro"
   identifier          = "gh-jg-aw-example-app-prod"
-  db_name             = "gh-jg-aw-example-app-database-name"
+  db_name             = "gh_jg_aw_example_app_database_name"
   username            = "root"
   password            = "password"
   skip_final_snapshot = true
