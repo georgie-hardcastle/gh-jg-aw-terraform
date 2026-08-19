@@ -2,6 +2,11 @@ provider "aws" {
   region = "eu-west-2"
 }
 
+# Reference Default VPC
+data "aws_vpc" "default_vpc" {
+  default = true
+} 
+
 # Create ECR
 resource "aws_ecr_repository" "task_listing_ecr" {
   name                 = "gh-jg-aw-task-listing-ecr"
@@ -77,5 +82,11 @@ resource "aws_elastic_beanstalk_environment" "task_listing_eba_environment" {
     namespace = "aws:autoscaling:launchconfiguration"
     name      = "EC2KeyName"
     value     = "johnny-devops-pair"
+  }
+
+  setting {
+    namespace = "aws:ec2:vpc"
+    name      = "VPCId"
+    value     = data.aws_vpc.default_vpc.id
   }
 }
