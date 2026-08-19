@@ -12,6 +12,10 @@ data "aws_subnets" "default_subnet" {
     name   = "vpc-id"
     values = [data.aws_vpc.default_vpc.id]
   }
+  filter {
+    name   = "defaultForAz"
+    values = ["true"]
+  }
 }
 
 # Create ECR
