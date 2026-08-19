@@ -5,7 +5,7 @@ provider "aws" {
 # Reference Default VPC
 data "aws_vpc" "default_vpc" {
   default = true
-} 
+}
 
 # Create ECR
 resource "aws_ecr_repository" "task_listing_ecr" {
