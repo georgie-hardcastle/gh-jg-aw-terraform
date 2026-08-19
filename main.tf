@@ -88,6 +88,11 @@ resource "aws_iam_role_policy_attachment" "ec2_instance_worker_arn" {
   policy_arn = "arn:aws:iam::aws:policy/AWSElasticBeanstalkWorkerTier"
 }
 
+resource "aws_iam_role_policy_attachment" "ec_instance_ecr_arn" {
+  role       = aws_iam_role.task_listing_app_ec2_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+}
+
 # Create Web Server Environment 
 resource "aws_elastic_beanstalk_environment" "task_listing_eba_environment" {
   name        = "gh-jg-aw-task-listing-app-environment"
