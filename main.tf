@@ -73,6 +73,21 @@ resource "aws_iam_role" "task_listing_app_ec2_role" {
   })
 }
 
+resource "aws_iam_role_policy_attachment" "ec2_instance_web_arn" {
+  role       = aws_iam_role.task_listing_app_ec2_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AWSElasticBeanstalkWebTier"
+}
+
+resource "aws_iam_role_policy_attachment" "ec2_instance_docker_arn" {
+  role       = aws_iam_role.task_listing_app_ec2_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AWSElasticBeanstalkMulticontainerDocker"
+}
+
+resource "aws_iam_role_policy_attachment" "ec2_instance_worker_arn" {
+  role       = aws_iam_role.task_listing_app_ec2_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AWSElasticBeanstalkWorkerTier"
+}
+
 # Create Web Server Environment 
 resource "aws_elastic_beanstalk_environment" "task_listing_eba_environment" {
   name        = "gh-jg-aw-task-listing-app-environment"
