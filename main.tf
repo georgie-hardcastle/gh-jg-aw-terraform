@@ -127,3 +127,16 @@ resource "aws_elastic_beanstalk_environment" "task_listing_eba_environment" {
     value     = join(",", data.aws_subnets.default_subnet.ids)
   }
 }
+
+resource "aws_db_instance" "rds_app" {
+  allocated_storage   = 10
+  engine              = "postgres"
+  engine_version      = "15.3"
+  instance_class      = "db.t3.micro"
+  identifier          = "gh-jg-aw-example-app-prod"
+  db_name             = "gh-jg-aw-example-app-database-name"
+  username            = "root"
+  password            = "password"
+  skip_final_snapshot = true
+  publicly_accessible = true
+}
