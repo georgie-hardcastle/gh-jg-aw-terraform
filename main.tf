@@ -7,6 +7,13 @@ data "aws_vpc" "default_vpc" {
   default = true
 }
 
+data "aws_subnets" "default_subnet" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.default_vpc.id]
+  }
+}
+
 # Create ECR
 resource "aws_ecr_repository" "task_listing_ecr" {
   name                 = "gh-jg-aw-task-listing-ecr"
@@ -88,5 +95,11 @@ resource "aws_elastic_beanstalk_environment" "task_listing_eba_environment" {
     namespace = "aws:ec2:vpc"
     name      = "VPCId"
     value     = data.aws_vpc.default_vpc.id
+  }
+
+  setting {
+    namespace = "aws:ec2:vpc"
+    name      = "Subnets"
+    value     = join(",", data.aws_subnets.default_subnet.ids)
   }
 }
