@@ -7,7 +7,7 @@ data "aws_vpc" "default_vpc" {
   default = true
 }
 
-data "aws_subnet" "default_subnet" {
+data "aws_subnets" "default_subnet" {
   filter {
     name   = "vpc-id"
     values = [data.aws_vpc.default_vpc.id]
@@ -100,6 +100,6 @@ resource "aws_elastic_beanstalk_environment" "task_listing_eba_environment" {
   setting {
     namespace = "aws:ec2:vpc"
     name      = "Subnets"
-    value     = data.aws_subnet.default_subnet.id
+    value     = join(",", data.aws_subnets.default_subnet.ids)
   }
 }
