@@ -126,6 +126,37 @@ resource "aws_elastic_beanstalk_environment" "task_listing_eba_environment" {
     name      = "Subnets"
     value     = join(",", data.aws_subnets.default_subnet.ids)
   }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "DB_USER"
+    value     = aws_db_instance.rds_app.username
+  }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "DB_PASSWORD"
+    value     = aws_db_instance.rds_app.password
+  }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "DB_NAME"
+    value     = aws_db_instance.rds_app.db_name
+  }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "DB_HOST"
+    value     = aws_db_instance.rds_app.address
+  }
+
+  # setting {
+  #   namespace = "aws:elasticbeanstalk:application:environment"
+  #   name      = "ORIGIN"
+  #   value     = "gh-jg-aw-task-listing-app-environment.eba-dzby42cb.eu-west-2.elasticbeanstalk.com"
+  # }
+
 }
 
 resource "aws_db_instance" "rds_app" {
