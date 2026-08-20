@@ -141,7 +141,7 @@ resource "aws_elastic_beanstalk_environment" "task_listing_eba_environment" {
 
   setting {
     namespace = "aws:elasticbeanstalk:application:environment"
-    name      = "DB_NAME"
+    name      = "DB_DATABASE"
     value     = aws_db_instance.rds_app.db_name
   }
 
